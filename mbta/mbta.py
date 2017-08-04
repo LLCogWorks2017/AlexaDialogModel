@@ -16,16 +16,26 @@ def start_skill():
 
 
 def get_next_train():
+    """Return schedule information for the next train
+
+    Read slot values from session.attributes and use the MBTA API.
+    
+    Returns:
+        str: The schedule information for the next train.
+    """
     direction = session.attributes["Direction"]
     line = session.attributes["Line"]
     station = session.attributes["Station"]
-    time = 5
+    time = 5  # Implement this with the API!
     msg = "The next %s %s train from %s leaves in %i minutes." % (direction, line, station, time)
     return msg
 
 
 def send_text():
-    pass
+    """Send a text reminder
+
+    """
+    pass  # Implement this!
 
 
 schedule_slots = [{"slot_name": "Station", "prompt": "What station?"},
@@ -114,12 +124,13 @@ def set_line(Direction):
         return statement(msg)
 
 @ask.intent("YesIntent")
-def set_line():
+def yes_intent():
+    send_text()
     msg = "OK, I'll text you."
     return statement(msg)
 
 @ask.intent("NoIntent")
-def set_line():
+def no_intent():
     msg = "OK."
     return statement(msg)
 
