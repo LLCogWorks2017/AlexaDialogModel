@@ -6,3 +6,11 @@ NextTrainIntent when does the next train leave
 SetStationIntent {Station}
 
 SetLineIntent {Line}
+
+SetDirectionIntent {Direction}
+
+YesIntent yes
+YesIntent ok
+YesIntent sure
+
+NoIntent no

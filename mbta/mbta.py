@@ -113,9 +113,6 @@ def set_line(Direction):
     else:
         return statement(msg)
 
-"""
-How should we handle triggered intents that should have conditional responses.
-"""
 @ask.intent("YesIntent")
 def set_line():
     msg = "OK, I'll text you."
@@ -125,7 +122,6 @@ def set_line():
 def set_line():
     msg = "OK."
     return statement(msg)
-
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -39,6 +39,12 @@
           "type": "DIRECTION"
         }
       ]
+    },
+    {
+      "intent": "YesIntent"
+    },
+    {
+      "intent": "NoIntent"
     }
   ]
 }
