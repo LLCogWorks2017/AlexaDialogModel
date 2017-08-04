@@ -19,16 +19,15 @@ Alexa: What direction?
 User: Inbound
 Alexa: The next inbound Red Line train out of Kendall leaves at 5pm. Should I text you a reminder when it's time to leave?
 User: Yes
-Alexa: What is your phone number?
-User: 555-555-5555
+Alexa: Ok. I'll send you a text when it is time to leave.
 ```
 
-You can see that there are two intents embedded in this interaction: retrieving the train schedule and then scheduling a reminder. Each intent has an associated set of slots that must be filled to fully handle the request:
+You can see that there are two intents embedded in this interaction: retrieving the train schedule and then scheduling a reminder. Each intent can have an associated set of slots that must be filled to fully handle the request:
 
-1. To retrieve the train schedle, we must know a) the intended station, b) the train line, and c) the direction (inbound or outbound).
-2. To determine if the user wants a text message, we must know a) the user's phone number.
+1. To retrieve the train schedule, we must know a) the intended station, b) the train line, and c) the direction (inbound or outbound).
+2. To determine if the user wants a text message, we don't need any slots filled.
 
-Obviously, performing these two intents independently is easy if all slots are filled:
+Obviously, performing an intent is easy if all slots are filled:
 
 ```python
 def get_next_train():
@@ -39,16 +38,11 @@ def get_next_train():
     msg = "The next %s %s train from %s leaves in %i minutes." % (direction, line, station, time)
     return msg
 
-def send_text():
-    phone_number = session.attributes["PhoneNumber"]
-    schedule_sms_message(phone_number)  # assume this is given
-    msg = "OK, I've scheduled it"
-    return msg
 ```
 
 But what if a user hasn't specified all slots with a long, very specific utterance like: 
 
->"When does the next inbound Red Line train leave from Kendall Station? And please send me a text message reminder. My phone number is 555-555-5555." 
+>"When does the next inbound Red Line train leave from Kendall Station? And yes, please send me a text message reminder." 
 
 Expecting the user to know this exact template is not practical, and enumerating all possible ways a user might order the slots is messy. Instead, we want simple interactions like this:
 
@@ -68,7 +62,7 @@ In Python, we can encode a dialog like this:
 
 ```python
 dialog = [{"intent": get_next_train, "slots": schedule_slots, "transition_msg": "Should I text you?"}, 
-          {"intent": send_text, "slots": text_slots, "transition_msg": None}]
+          {"intent": send_text, "slots": None, "transition_msg": None}]
 ```
 
 Each element in the list is a python dictionary and holds 3 pieces of information:
