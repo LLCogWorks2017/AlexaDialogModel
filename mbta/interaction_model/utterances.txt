@@ -1,0 +1,8 @@
+NextTrainIntent when is the next {Line} train out of {Station}
+NextTrainIntent when is the next train out of {Station}
+NextTrainIntent when does the next train leave {Station}
+NextTrainIntent when does the next train leave
+
+SetStationIntent {Station}
+
+SetLineIntent {Line}

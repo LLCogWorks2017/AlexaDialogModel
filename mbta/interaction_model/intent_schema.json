@@ -1,0 +1,44 @@
+{
+  "intents": [
+    {
+      "slots": [
+        {
+          "name": "Line",
+          "type": "LINE"
+        },
+        {
+          "name": "Station",
+          "type": "STATION"
+        }
+      ],
+      "intent": "NextTrainIntent"
+    },
+    {
+      "intent": "SetStationIntent",
+      "slots": [
+        {
+          "name": "Station",
+          "type": "STATION"
+        }
+      ]
+    },
+    {
+      "intent": "SetLineIntent",
+      "slots": [
+        {
+          "name": "Line",
+          "type": "LINE"
+        }
+      ]
+    },
+    {
+      "intent": "SetDirectionIntent",
+      "slots": [
+        {
+          "name": "Direction",
+          "type": "DIRECTION"
+        }
+      ]
+    }
+  ]
+}
